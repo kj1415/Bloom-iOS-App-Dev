@@ -10,6 +10,7 @@
 		5B1374462B4E55E0005DCFAB /* vitals__.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1374452B4E55E0005DCFAB /* vitals__.swift */; };
 		5B13744A2B4E6B93005DCFAB /* MedBuddy_Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1374492B4E6B93005DCFAB /* MedBuddy_Home.swift */; };
 		5B13744C2B4E8EAF005DCFAB /* MedBuddy_Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B13744B2B4E8EAF005DCFAB /* MedBuddy_Next.swift */; };
+		5B13744E2B4E94F2005DCFAB /* Settings:Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B13744D2B4E94F2005DCFAB /* Settings:Profile.swift */; };
 		7F19161D2B3A921400E5FEE0 /* LoginApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19161C2B3A921400E5FEE0 /* LoginApp.swift */; };
 		7F19161F2B3A921400E5FEE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19161E2B3A921400E5FEE0 /* ContentView.swift */; };
 		7F1916212B3A921500E5FEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F1916202B3A921500E5FEE0 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		5B1374452B4E55E0005DCFAB /* vitals__.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vitals__.swift; sourceTree = "<group>"; };
 		5B1374492B4E6B93005DCFAB /* MedBuddy_Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedBuddy_Home.swift; sourceTree = "<group>"; };
 		5B13744B2B4E8EAF005DCFAB /* MedBuddy_Next.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedBuddy_Next.swift; sourceTree = "<group>"; };
+		5B13744D2B4E94F2005DCFAB /* Settings:Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings:Profile.swift"; sourceTree = "<group>"; };
 		7F1916192B3A921400E5FEE0 /* Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F19161C2B3A921400E5FEE0 /* LoginApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApp.swift; sourceTree = "<group>"; };
 		7F19161E2B3A921400E5FEE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				5B1374452B4E55E0005DCFAB /* vitals__.swift */,
 				5B1374492B4E6B93005DCFAB /* MedBuddy_Home.swift */,
 				5B13744B2B4E8EAF005DCFAB /* MedBuddy_Next.swift */,
+				5B13744D2B4E94F2005DCFAB /* Settings:Profile.swift */,
 				7F1916202B3A921500E5FEE0 /* Assets.xcassets */,
 				7F1916222B3A921500E5FEE0 /* Preview Content */,
 			);
@@ -170,6 +173,7 @@
 				5B13744C2B4E8EAF005DCFAB /* MedBuddy_Next.swift in Sources */,
 				7F19161F2B3A921400E5FEE0 /* ContentView.swift in Sources */,
 				5B1374462B4E55E0005DCFAB /* vitals__.swift in Sources */,
+				5B13744E2B4E94F2005DCFAB /* Settings:Profile.swift in Sources */,
 				7F7F58172B41DA11000BB405 /* details1.swift in Sources */,
 				7FB84B9F2B43231F003144D3 /* Homepage.swift in Sources */,
 				7F19161D2B3A921400E5FEE0 /* LoginApp.swift in Sources */,
