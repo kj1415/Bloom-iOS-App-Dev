@@ -9,42 +9,46 @@ import SwiftUI
 
 struct vitals__: View {
     var body: some View {
-        VStack {
-            Text("Hello World")
-                .font(.largeTitle)
-                .padding(.top, 50)
+        ZStack{
+            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
             
-            Spacer()
-            
-            HStack {
+            VStack {
+                Text("Hello User")
+                    .font(.largeTitle)
+                    .padding(.top, 50)
+                
                 Spacer()
-                // Button 1
-                SquareButton(imageName: "heart.fill", buttonText: "Button 1", number: 42, subtitle: "Likes")
-                Spacer()
-                // Button 2
-                SquareButton(imageName: "star.fill", buttonText: "Button 2", number: 123, subtitle: "Stars")
+                
+                HStack {
+                    Spacer()
+                    // Button 1
+                    SquareButton(imageName: "heart.fill", buttonText: "Heart Rate", number: 90, subtitle: "bpm")
+                    Spacer()
+                    // Button 2
+                    SquareButton(imageName: "figure.walk", buttonText: "Walking", number: 32, subtitle: "km")
+                    Spacer()
+                }
+                .padding(.vertical, 20)
+                
+                HStack {
+                    Spacer()
+                    // Button 3
+                    SquareButton(imageName: "bolt.fill", buttonText: "Exercise", number: 5, subtitle: "Hrs")
+                    Spacer()
+                    // Button 4
+                    SquareButton(imageName: "zzz", buttonText: "Sleep", number: 7, subtitle: "Hrs")
+                    Spacer()
+                }
+                .padding(.bottom, 20)
+                
                 Spacer()
             }
-            .padding(.vertical, 20)
-            
-            HStack {
-                Spacer()
-                // Button 3
-                SquareButton(imageName: "circle.fill", buttonText: "Button 3", number: 567, subtitle: "Circles")
-                Spacer()
-                // Button 4
-                SquareButton(imageName: "square.fill", buttonText: "Button 4", number: 999, subtitle: "Squares")
-                Spacer()
-            }
-            .padding(.bottom, 20)
-            
-            Spacer()
+            .navigationBarTitle(Text(""), displayMode: .inline)
         }
-        .navigationBarTitle(Text(""), displayMode: .inline)
-    }
-}
+    }}
 
 struct SquareButton: View {
+    
     var imageName: String
     var buttonText: String
     var number: Int
@@ -77,9 +81,34 @@ struct SquareButton: View {
         }
         .frame(maxWidth: .infinity)
     }
-}
+        
+    }
 
 
+
+//TabView
+//{
+//    Text("HOME")
+//        .tabItem {
+//            Label("",image: "homeicon")
+//        }
+//        
+//     Text("Appointment")
+//            .tabItem {
+//                Label("",image:"appointicon")
+//            }
+//    
+//    Text("Vitals")
+//           .tabItem {
+//               Label("",image:"vitalsicon")
+//           }
+//    
+//    Text("Community")
+//           .tabItem {
+//               Label("",image:"momcom")
+//           }
+//    }
+    
 
 
 

@@ -10,7 +10,18 @@ import SwiftUI
 struct Homepage: View {
     var body: some View {
         //Image("logo1")
-            
+        Text(getCurrentMonth()).font(.headline).padding()
+        // Title "MedBuddy"
+        
+        // ScrollView for dates and days
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(1...30, id: \.self) { day in
+                    DateBox(day: day)
+                }
+            }
+        }
+        .padding(.horizontal)
         Text("Services")
             .bold()
         HStack{
@@ -86,6 +97,11 @@ struct Homepage: View {
         }
        
         
+    }
+    func getCurrentMonth() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: Date())
     }
 }
 
