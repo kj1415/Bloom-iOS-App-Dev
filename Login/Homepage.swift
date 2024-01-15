@@ -1,3 +1,5 @@
+
+/*
 //
 //  Homepage.swift
 //  Login
@@ -22,6 +24,18 @@ struct Homepage: View {
             }
         }
         .padding(.horizontal)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         Text("Services")
             .bold()
         HStack{
@@ -71,40 +85,44 @@ struct Homepage: View {
             })
         }
         
-        TabView
-        {
+        TabView{
+            
             Text("HOME")
                 .tabItem {
                     Label("",image: "homeicon")
+                    
+                    
                 }
-                
-             Text("Appointment")
-                    .tabItem {
-                        Label("",image:"appointicon")
-                    }
+            
+            Text("Appointment")
+                .tabItem {
+                    Label("",image:"appointicon")
+                }
             
             Text("Vitals")
-                   .tabItem {
-                       Label("",image:"vitalsicon")
-                   }
+                .tabItem {
+                    Label("",image:"vitalsicon")
+                }
             
             Text("Community")
-                   .tabItem {
-                       Label("",image:"momcom")
-                   }
-            
+                .tabItem {
+                    Label("",image:"momcom")
+                }
+        }
             
         }
        
         
-    }
+    
     func getCurrentMonth() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: Date())
     }
-}
+
 
 #Preview {
     Homepage()
 }
+
+ /**/*/
