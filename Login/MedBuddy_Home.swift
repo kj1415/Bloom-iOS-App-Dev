@@ -15,12 +15,12 @@ struct MedBuddy_Home: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Button(action: {
-                        // Handle back button tap
+                       
                     }) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.blue)
-                    }
-                    Spacer()
+                    }.padding(.horizontal,1)
+                    
                     // Display the current month
                     
                     Text("MedBuddy").font(.title).multilineTextAlignment(.center)
@@ -61,6 +61,9 @@ struct MedBuddy_Home: View {
                 // Display records for the particular day
                 Text("Medication Records for \(getCurrentDay())")
                     .font(.headline)
+                VStack{
+                    
+                }
                     
                 
                 // Add your medicine records display here

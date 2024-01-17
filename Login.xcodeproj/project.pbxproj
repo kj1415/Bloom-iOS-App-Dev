@@ -80,7 +80,6 @@
 				5B1374442B4E5464005DCFAB /* Info.plist */,
 				5B1374432B4E5446005DCFAB /* Login.entitlements */,
 				7F19161C2B3A921400E5FEE0 /* LoginApp.swift */,
-				7F19161E2B3A921400E5FEE0 /* ContentView.swift */,
 				7FB84B9E2B43231F003144D3 /* Homepage.swift */,
 				7FB84BA02B46CBE7003144D3 /* appointments.swift */,
 				7F7F58162B41DA10000BB405 /* details1.swift */,
@@ -93,6 +92,7 @@
 				5B13744F2B4FDD27005DCFAB /* Login_Page.swift */,
 				5B76A46E2B559CD8005299BF /* TabView.swift */,
 				7FB84BA22B46CBF2003144D3 /* MomComm.swift */,
+				7F19161E2B3A921400E5FEE0 /* ContentView.swift */,
 				7F1916202B3A921500E5FEE0 /* Assets.xcassets */,
 				7F1916222B3A921500E5FEE0 /* Preview Content */,
 			);

@@ -1,5 +1,5 @@
-
 /*
+
 //
 //  Homepage.swift
 //  Login
@@ -51,16 +51,16 @@ struct Homepage: View {
                     .cornerRadius(100)
             })
             
-         /*  Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/
-                   ,
-                   label: {
-                Text("Medic")
-                    .foregroundColor(.white)
-                    .padding()
-                    .padding(.horizontal,50)
-                    .background(Color.red)
-                    .cornerRadius(10)
-            })*/
+            /*  Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/
+             ,
+             label: {
+             Text("Medic")
+             .foregroundColor(.white)
+             .padding()
+             .padding(.horizontal,50)
+             .background(Color.red)
+             .cornerRadius(10)
+             })*/
             
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/
                    ,
@@ -85,44 +85,22 @@ struct Homepage: View {
             })
         }
         
-        TabView{
-            
-            Text("HOME")
-                .tabItem {
-                    Label("",image: "homeicon")
-                    
-                    
-                }
-            
-            Text("Appointment")
-                .tabItem {
-                    Label("",image:"appointicon")
-                }
-            
-            Text("Vitals")
-                .tabItem {
-                    Label("",image:"vitalsicon")
-                }
-            
-            Text("Community")
-                .tabItem {
-                    Label("",image:"momcom")
-                }
-        }
-            
-        }
-       
         
+    }
+    
+    
     
     func getCurrentMonth() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: Date())
     }
-
-
-#Preview {
-    Homepage()
+    
+    
+    #Preview {
+        Homepage()
+    }
+    
+    
 }
-
  /**/*/
