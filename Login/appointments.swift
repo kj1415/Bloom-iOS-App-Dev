@@ -30,9 +30,6 @@ struct appointments: View {
     var body: some View {
         VStack {
             // Display physiotherapists on top
-            Text("Physiotherapists")
-                .font(.title)
-                .padding()
 
             // Back button aligned to the top left corner
             HStack {

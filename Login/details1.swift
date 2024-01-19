@@ -16,7 +16,7 @@ struct details1: View {
             Image("logo1")
                 .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                 .padding()
-        Text("                                          *Madotory fields")
+        Text("                                          *Mandatory fields")
             //.backgroundColor(.blue)
                 
         Text("Baby's Name                                                  ")
