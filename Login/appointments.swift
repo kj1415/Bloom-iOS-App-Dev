@@ -36,9 +36,9 @@ struct appointments: View {
                 Button(action: {
                     // Handle back button tap
                 }) {
-                    Image(systemName: "chevron.left")
+                    /*Image(systemName: "chevron.left")
                         .foregroundColor(.blue)
-                        .padding()
+                        .padding()*/
                 }
                 Spacer()
             }

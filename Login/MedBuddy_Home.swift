@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MedBuddy_Home: View {
+    @EnvironmentObject var remindersManager: MedicationRemindersManager
     var body: some View {
         ZStack {
             Color(.systemTeal).brightness(0.70).ignoresSafeArea()
@@ -42,7 +43,7 @@ struct MedBuddy_Home: View {
                 
                 // Button to add medicine
                 Button(action: {
-                                // Your button action
+                                
                             }) {
                         Image(systemName: "plus")
                         
@@ -57,11 +58,11 @@ struct MedBuddy_Home: View {
                             }
                         
                     
-                
+                VStack{
                 // Display records for the particular day
                 Text("Medication Records for \(getCurrentDay())")
                     .font(.headline)
-                VStack{
+                
                     
                 }
                     

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct vitals__: View {
     var body: some View {
-        ZStack{
-            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
+        ZStack {
+            Color(.systemTeal)
+                .brightness(0.70)
+                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 Text("Hello User")
@@ -19,25 +21,15 @@ struct vitals__: View {
                 
                 Spacer()
                 
-                HStack {
-                    Spacer()
-                    // Button 1
+                HStack(spacing: 20) {
                     SquareButton(imageName: "heart.fill", buttonText: "Heart Rate", number: 90, subtitle: "bpm")
-                    Spacer()
-                    // Button 2
                     SquareButton(imageName: "figure.walk", buttonText: "Walking", number: 32, subtitle: "km")
-                    Spacer()
                 }
                 .padding(.vertical, 20)
                 
-                HStack {
-                    Spacer()
-                    // Button 3
+                HStack(spacing: 20) {
                     SquareButton(imageName: "bolt.fill", buttonText: "Exercise", number: 5, subtitle: "Hrs")
-                    Spacer()
-                    // Button 4
                     SquareButton(imageName: "zzz", buttonText: "Sleep", number: 7, subtitle: "Hrs")
-                    Spacer()
                 }
                 .padding(.bottom, 20)
                 
@@ -45,10 +37,10 @@ struct vitals__: View {
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
         }
-    }}
+    }
+}
 
 struct SquareButton: View {
-    
     var imageName: String
     var buttonText: String
     var number: Int
@@ -81,8 +73,7 @@ struct SquareButton: View {
         }
         .frame(maxWidth: .infinity)
     }
-        
-    }
+}
 
 
 

@@ -1,74 +1,73 @@
-//
-//  details1.swift
-//  Login
-//
-//  Created by user1 on 31/12/23.
-//
-
 import SwiftUI
 
-struct details1: View {
+struct Details1: View {
+    @State private var babyName = ""
+    @State private var lastMenstrualCycle = Date()
+    @State private var weight = ""
+    
     var body: some View {
-        
-        
-            //Spacer()
-            //.padding(50)
-            Image("logo1")
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-                .padding()
-        Text("                                          *Mandatory fields")
-            //.backgroundColor(.blue)
+        ZStack{
+            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
+            
+            VStack {
+                Image("logo1")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                    .padding()
                 
-        Text("Baby's Name                                                  ")
-           // .padding()
-            .padding(.vertical,10)
-            
-        TextField("Name", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            .padding(10)
-            .padding(.horizontal,10)
-    
-        Text("Last Menstrual cycle                                       ")
-            
-        TextField("Date", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            
-            .padding(.horizontal,10)
-            
-        Text("Weight*")
-        TextField("Enter weight in kgs", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            
-            .padding(.horizontal,10)
-        Spacer()
-            .padding(50)
-         
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/
-               ,
-               label: {
-            Text("Sync with apple health")
-                .foregroundColor(.white)
-                .padding()
-                .padding(.horizontal,50)
-                .background(Color.blue)
-                .cornerRadius(10)
-        })
-        .padding(10)
-        
-        
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/
-               ,
-               label: {
-            Text("Let's Get Started")
-                .foregroundColor(.white)
-                .padding()
-                .padding(.horizontal,50)
-                .background(Color.blue)
-                .cornerRadius(10)
-        })
-        Spacer()
-            .padding(10)
+                Text("*Mandatory fields")
+                    .foregroundColor(.red)
+                    .padding(.bottom, 10)
+                
+                TextField("Baby's Name", text: $babyName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                TextField("Weight (kg)*", text: $weight)
+                    .keyboardType(.numberPad) // Allow only numerical input
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                DatePicker("Last Menstrual Cycle*", selection: $lastMenstrualCycle, displayedComponents: .date)
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .padding()
+                
+                Spacer()
+                
+                Button(action: {
+                    // Sync with Apple Health action
+                }) {
+                    Text("Sync with Apple Health")
+                        .foregroundColor(.white)
+                        .padding()
+                        .padding(.horizontal, 50)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom, 10)
+                
+                NavigationLink(destination: NextScreen()) {
+                    Text("Let's Get Started")
+                        .foregroundColor(.white)
+                        .padding()
+                        .padding(.horizontal, 50)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+            }
+            .padding()
         }
-    
+    }
+}
+struct NextScreen: View {
+    var body: some View {
+        Text("Next Screen")
+    }
 }
 
-#Preview {
-    details1()
+struct Details1_Previews: PreviewProvider {
+    static var previews: some View {
+        Details1()
+    }
 }

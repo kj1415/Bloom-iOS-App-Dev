@@ -11,6 +11,7 @@ struct Login_Page: View {
     var body: some View {
         NavigationView {
             ZStack {
+                
                 Color.teal
                     .ignoresSafeArea()
                 Circle()
@@ -19,6 +20,7 @@ struct Login_Page: View {
                 Circle()
                     .scale(1.35)
                     .foregroundColor(.white)
+                
 
                 VStack {
                     Text("Login")

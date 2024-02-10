@@ -2,33 +2,45 @@ import SwiftUI
 
 struct HomePageView: View {
     @State private var currentWeek: Double = 1
+    @State private var medicationReminders: [MedicationReminder] = []
 
     var body: some View {
-        ScrollView {
-            // Week Scroller
-            WeekScrollerView(currentWeek: $currentWeek)
-                .frame(height: 150)
-
-            // Circular Loading View with Embryo Image
-            myCircularLoadingView(currentWeek: $currentWeek)
-                .frame(width: 150, height: 150)
-                .padding()
-
-            // Horizontal ScrollView of Large Square Buttons
-            LargeSquareButtonsScrollView()
-
-            // Medication Reminder Section
-            MedicationReminderSection()
+        ZStack{
+            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
+            ScrollView {
+                // Week Scroller
+                WeekScrollerView(currentWeek: $currentWeek)
+                    .frame(height: 150)
+                
+                // Circular Loading View with Embryo Image
+                myCircularLoadingView(currentWeek: $currentWeek)
+                    .frame(width: 150, height: 150)
+                    .padding()
+                
+                // Horizontal ScrollView of Large Square Buttons
+                LargeSquareButtonsScrollView()
+                
+                // Medication Reminder Section
+                MedicationReminderSection(medicationReminders: $medicationReminders)
+            }
         }
     }
 }
+
+struct MedicationReminder {
+    var pillName: String
+    var amount: Int
+    var isBeforeFood: Bool
+    var selectedTime: Date
+}
+
 
 struct WeekScrollerView: View {
     @Binding var currentWeek: Double
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
+            HStack(spacing: 15) {
                 ForEach(1...40, id: \.self) { week in
                     Text("\(week) weeks")
                         .padding(10)
@@ -87,7 +99,7 @@ struct LargeSquareButton<Destination: View>: View {
                 Image(systemName: systemImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
+                    .frame(width: 70, height: 70)
                     .foregroundColor(.blue)
 
                 Text("Button")
@@ -138,15 +150,58 @@ struct LargeSquareButtonsScrollView: View {
 
 
 struct MedicationReminderSection: View {
+    @Binding var medicationReminders: [MedicationReminder]
+
     var body: some View {
         VStack {
             Text("Medication Reminder")
                 .font(.title)
                 .padding()
 
-            // Add Medication Reminder content here
-            // For example, a list of medications and reminders
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(medicationReminders.indices, id: \.self) { index in
+                        EllipseMedicationReminderView(medicationReminder: medicationReminders[index])
+                    }
+                }
+                .padding(.horizontal)
+            }
         }
+    }
+}
+
+struct EllipseMedicationReminderView: View {
+    var medicationReminder: MedicationReminder
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Ellipse()
+                .fill(Color.blue)
+                .frame(width: 120, height: 60)
+                .overlay(
+                    VStack(spacing: 4) {
+                        Text(medicationReminder.pillName)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                        Text("Amount: \(medicationReminder.amount)")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                        Text("Before Food: \(medicationReminder.isBeforeFood ? "Yes" : "No")")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                        Text("Time: \(formattedTime(from: medicationReminder.selectedTime))")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                    }
+                    .padding()
+                )
+        }
+    }
+
+    func formattedTime(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
 

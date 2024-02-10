@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct onboarding: View {
     
     @AppStorage("currentPage") var currentPage = 1
     var body: some View {
@@ -22,7 +22,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    onboarding()
 }
 
 struct Home: View {
@@ -118,7 +118,7 @@ struct ScreenView: View {
         VStack(spacing: 20){
             HStack{
                 if currentPage == 1{
-                    Text("Hello")
+                    Text("Hey there!")
                         .font(.title)
                         .fontWeight(.semibold)
                         .kerning(1.2)
@@ -142,9 +142,7 @@ struct ScreenView: View {
                 Spacer()
                 
                 Button(action: {
-                    withAnimation(.easeInOut){
-                        currentPage = 1
-                    }
+                    HomePageView_Previews()
                 }, label: {
                     Text("Skip")
                         .fontWeight(.semibold)
