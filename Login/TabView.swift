@@ -27,11 +27,11 @@ struct TabView: View {
                             HomePageView()
                         }.navigationTitle("Home")
                     }
-                    NavigationLink("Hello", destination: Homepage_2())
+                    NavigationLink("Hello", destination: HomePageView())
                 case 1:
                     NavigationView{
                         VStack{
-                            appointments()
+                            AppointmentBookingView()
                         }.navigationTitle("Appointments")
                     }
                     

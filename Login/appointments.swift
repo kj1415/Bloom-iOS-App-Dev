@@ -1,120 +1,129 @@
-//
-//  appointments.swift
-//  Login
-//
-//  Created by user1 on 04/01/24.
-//
-
 import SwiftUI
-import MapKit
 
-// Sample data for popular physiotherapists
-struct Physiotherapist {
-    var id: Int
-    var name: String
-    var imageName: String
-    var description: String
-}
-
-struct appointments: View {
-    @State private var searchText = ""
-    @State private var selectedPhysiotherapist: Physiotherapist?
-
-    // Sample physiotherapists data
-    let popularPhysiotherapists: [Physiotherapist] = [
-        Physiotherapist(id: 1, name: "Dr. John Doe", imageName: "physio1", description: "Experienced in sports injuries."),
-        Physiotherapist(id: 2, name: "Dr. Jane Smith", imageName: "physio2", description: "Specializing in rehabilitation."),
-        // Add more physiotherapists as needed
+struct AppointmentBookingView: View {
+    @State private var selectedCategoryIndex = 0
+    @State private var selectedDoctorIndex: Int?
+    @State private var selectedDate = Date()
+    @State private var selectedTimeSlot: String?
+    
+    let categories = ["Gynaecologist", "Physiotherapist"]
+    
+    // Sample data for doctors and physiotherapists
+    let gynaecologists = [
+        "Dr. Emily Johnson",
+        "Dr. Sarah Smith",
+        "Dr. Jessica Davis"
     ]
-
+    
+    let physiotherapists = [
+        "Dr. Michael Brown",
+        "Dr. David Wilson",
+        "Dr. Olivia Lee"
+    ]
+    
+    // Sample time slots
+    let timeSlots = [
+        "09:00 AM",
+        "10:00 AM",
+        "11:00 AM",
+        "02:00 PM",
+        "03:00 PM",
+        "04:00 PM"
+    ]
+    
+    var selectedCategory: String {
+        categories[selectedCategoryIndex]
+    }
+    
+    var selectedCategoryDoctors: [String] {
+        if selectedCategoryIndex == 0 {
+            return gynaecologists
+        } else {
+            return physiotherapists
+        }
+    }
+    
     var body: some View {
-        VStack {
-            // Display physiotherapists on top
-
-            // Back button aligned to the top left corner
-            HStack {
-                Button(action: {
-                    // Handle back button tap
-                }) {
-                    /*Image(systemName: "chevron.left")
-                        .foregroundColor(.blue)
-                        .padding()*/
+        VStack(spacing: 20) {
+            Picker("Select Category", selection: $selectedCategoryIndex) {
+                ForEach(0..<categories.count) { index in
+                    Text(categories[index])
                 }
-                Spacer()
             }
-            .padding(.horizontal)
-
-            // Map in the top half of the screen
-            MapView()
-                .frame(height: UIScreen.main.bounds.height / 3)
-
-            // Search bar below the map
-            SearchBar(text: $searchText)
-                .padding()
-
-            // Horizontal scroll view of popular physiotherapists
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(popularPhysiotherapists, id: \.id) { physiotherapist in
-                        PhysiotherapistCard(physiotherapist: physiotherapist)
-                            .onTapGesture {
-                                // Handle selection of physiotherapist
-                                selectedPhysiotherapist = physiotherapist
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            
+            ScrollView {
+                VStack(spacing: 10) {
+                    ForEach(selectedCategoryDoctors.indices, id: \.self) { index in
+                        Button(action: {
+                            selectedDoctorIndex = index
+                        }) {
+                            HStack {
+                                Text(selectedCategoryDoctors[index])
+                                    .padding()
+                                    .foregroundColor(.black)
+                                Spacer()
+                                if selectedDoctorIndex == index {
+                                    Image(systemName: "checkmark")
+                                        .padding()
+                                        .foregroundColor(.blue)
+                                }
                             }
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
+                        }
+                    }
+                }
+            }
+            .padding()
+            
+            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                .padding()
+            
+            ScrollView(.horizontal) {
+                HStack(spacing: 10) {
+                    ForEach(timeSlots, id: \.self) { timeSlot in
+                        Button(action: {
+                            selectedTimeSlot = timeSlot
+                        }) {
+                            Text(timeSlot)
+                                .padding()
+                                .background(selectedTimeSlot == timeSlot ? Color.blue : Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
                     }
                 }
                 .padding()
             }
-
-            // Additional content for appointment booking can be added here
-        }
-        .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct MapView: UIViewRepresentable {
-    func makeUIView(context: Context) -> MKMapView {
-        MKMapView()
-    }
-
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        // Update the map view if needed
-    }
-}
-
-struct SearchBar: View {
-    @Binding var text: String
-
-    var body: some View {
-        TextField("Search Physiotherapists", text: $text)
+            
+            Button(action: {
+                // Confirm appointment action
+                if let doctorIndex = selectedDoctorIndex, let timeSlot = selectedTimeSlot {
+                    print("Appointment confirmed with \(selectedCategoryDoctors[doctorIndex]) at \(timeSlot) on \(selectedDate)")
+                    // Add your appointment confirmation logic here
+                } else {
+                    print("Please select a doctor and a time slot.")
+                }
+            }) {
+                Text("Confirm Appointment")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
             .padding()
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-    }
-}
-
-struct PhysiotherapistCard: View {
-    var physiotherapist: Physiotherapist
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Image(physiotherapist.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 120, height: 120)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-
-            Text(physiotherapist.name)
-                .font(.headline)
-
-            Text(physiotherapist.description)
-                .font(.caption)
-                .foregroundColor(.gray)
+            
+            Spacer()
         }
-        .frame(width: 150)
+        .padding()
     }
 }
 
-#Preview {
-    appointments()
+struct AppointmentBookingView_Previews: PreviewProvider {
+    static var previews: some View {
+        AppointmentBookingView()
+    }
 }
-

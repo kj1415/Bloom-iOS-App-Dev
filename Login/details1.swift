@@ -47,7 +47,7 @@ struct Details1: View {
                 }
                 .padding(.bottom, 10)
                 
-                NavigationLink(destination: NextScreen()) {
+                NavigationLink(destination: TabView()) {
                     Text("Let's Get Started")
                         .foregroundColor(.white)
                         .padding()

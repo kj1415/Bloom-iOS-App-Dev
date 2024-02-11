@@ -2,104 +2,74 @@ import SwiftUI
 
 struct Settings: View {
     var body: some View {
-        ZStack{
+        ZStack {
+            Color(.systemTeal)
+                .brightness(0.70)
+                .ignoresSafeArea()
             
-            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
-            
-            VStack{
+            VStack(spacing: 20) {
                 Text("Profile")
-                    .bold()
-//                    .padding(10)
-//                    .frame(width: 300)
-//                    .frame(height: 300)
-//                    .cornerRadius(10)
-//
+                    .font(.title)
+                    .fontWeight(.bold)
                 
                 Image("pimage")
-                    .resizable().aspectRatio(contentMode: .fit)
-                    .frame(width: 300)
-//                    .frame(height: 300)
-                    .cornerRadius(1000)
-                    .padding(10)
-                Button(action: {}
-                       ,
-                       label: {
-                    Text("Edit Profile                     ")
-                        .foregroundColor(.black)
-                        .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .border(Color.black)
-                })
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 10)
                 
-                Button(action: {}
-                       ,
-                       label: {
-                    Text("My Health Info              ")
-                        .foregroundColor(.black)
-                        .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .border(Color.black)
-                })
+                VStack(spacing: 20) {
+                    SettingsButton(title: "Edit Profile", action: {})
+                    SettingsButton(title: "My Health Info", action: {})
+                    SettingsButton(title: "Notifications", action: {})
+                    SettingsButton(title: "Settings", action: {})
+                    SettingsButton(title: "Technical Support", action: {})
+                }
                 
-                Button(action: {}
-                       ,
-                       label: {
-                    Text("Notifications                 ")
-                        .foregroundColor(.black)
-                        .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .border(Color.black)
-                })
-
-                Button(action: {}
-                       ,
-                       label: {
-                    Text("Settings                         ")
-                        .foregroundColor(.black)
-                        .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .border(Color.black)
-                })
+                Spacer()
                 
-                Button(action: {}
-                       
-                       ,
-                       label: {
-                    Text("Technical Support        ")
-                        .foregroundColor(.black)
+                Button(action: {}, label: {
+                    Text("Logout")
+                        .foregroundColor(.white)
+                        .font(.headline)
                         .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.red)
                         .cornerRadius(10)
-                        .border(Color.black)
                 })
-
-                Button(action: {}
-                       ,
-                       label: {
-                    Text("Logout                            ")
-                        .foregroundColor(.red)
-                        .padding()
-                        .padding(.horizontal,50)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .border(Color.black)
-                })
-                
-                .padding(10)
-
-                
+                .padding(.horizontal)
             }
-        }}}
+            .padding()
+        }
+        .foregroundColor(.black) // Set the primary text color
+    }
+}
 
-#Preview {
-    Settings()
+struct SettingsButton: View {
+    var title: String
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action, label: {
+            Text(title)
+                .foregroundColor(.black)
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+        })
+    }
+}
+
+struct Settings_Previews: PreviewProvider {
+    static var previews: some View {
+        Settings()
+    }
 }

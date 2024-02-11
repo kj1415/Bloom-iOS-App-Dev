@@ -12,7 +12,7 @@ struct onboarding: View {
     @AppStorage("currentPage") var currentPage = 1
     var body: some View {
         if currentPage > totalPages{
-            Homepage_2()
+            
         }
         else{
             WalkthroughScreen()
@@ -142,7 +142,7 @@ struct ScreenView: View {
                 Spacer()
                 
                 Button(action: {
-                    HomePageView_Previews()
+                    TabView()
                 }, label: {
                     Text("Skip")
                         .fontWeight(.semibold)
