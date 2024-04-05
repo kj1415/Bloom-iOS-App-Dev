@@ -331,6 +331,7 @@ struct HomePageView: View {
                 
                 
                 VStack {
+                    
                     HStack {
                         ZStack {
                             Circle()
@@ -345,34 +346,71 @@ struct HomePageView: View {
                                 .foregroundColor(Color.blue)
                                 .rotationEffect(Angle(degrees: 270))
                                 .frame(width: 180, height: 180) //
-                            Image("img8")
-                                .resizable()
-                                .frame(width: 75, height: 75) // Adjust the frame size to make it smaller
-                                .foregroundColor(.blue)
-                        }
-                        .padding(.leading,-20)
-                        VStack(alignment: .leading) {
-                            Text("Height: \(babyHeight) cm")
                             
-                            Text("Weight: \(babyWeight) grams")
+                            
+                            VStack {
+                                Image("img8")
+                                    .resizable()
+                                    .frame(width: 75, height: 75)
+                                    .padding(.top,50)// Adjust the frame size to make it smaller
+                                    .foregroundColor(.blue)
+                                
+                                VStack(alignment: .leading) {
+                                    RoundedRectangle(cornerRadius: 1)
+                                        .foregroundColor(Color.white.opacity(0.4))
+                                        .overlay(
+                                            Text(" \(Int((currentWeek))) Weeks Pregnant")
+                                                .foregroundColor(.teal)
+                                                .font(.footnote)
+                                                .frame(alignment: .leading)
+                                                .padding(.top, -20) // Adjust padding from the top
+                                                .padding(.leading,-5) // Adjust padding from the leading edge
+                                        )
+                                }
+                                .padding(.top, -25) // Adjust padding from the top of the VStack
+                            }
+
                         }
                         .padding(.leading,40)
+                        
+                        AffirmationButton()
+                        
+//                        ZStack {
+//                            RoundedRectangle(cornerRadius: 20)
+//                                .fill(Color.white)
+//                                .frame(width:150,height: 80)
+//                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+//
+//                            VStack(alignment: .leading) {
+//                                Text("Height: \(babyHeight) cm*")
+//                                    .foregroundColor(.primary)
+//                                    .font(.headline)
+//                                    .padding(.top,5)
+//                                
+//                                Text("Weight: \(babyWeight) g*")
+//                                    .foregroundColor(.primary)
+//                                    .font(.headline)
+//                            }
+//                            .padding(20)
+//                        }
+//                        .padding(.horizontal, 10)
+
                     }
                     
                 }
                 
-                VStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 1)
-                        .foregroundColor(Color.white.opacity(0.4))
-                        .overlay(
-                            Text("You are \(Int((currentWeek))) weeks Pregnant")
-                                .foregroundColor(.teal)
-                                .font(.subheadline)
-                            
-                                .padding(.top,10)
-                                .padding(.leading,30)
-                        )
-                }
+//                VStack(alignment: .leading) {
+//                    RoundedRectangle(cornerRadius: 1)
+//                        .foregroundColor(Color.white.opacity(0.4))
+//                        .overlay(
+//                            Text("You are \(Int((currentWeek))) weeks Pregnant")
+//                                .foregroundColor(.teal)
+//                                .font(.subheadline)
+//                            
+//                                .padding(.top,10)
+//                                .padding(.leading,30)
+//                        )
+//                }
                 
                 
 //                Slider(value: $currentWeek, in: 1...40, step: 1)
@@ -381,7 +419,7 @@ struct HomePageView: View {
 //                    .disabled(true) // Prevent user interaction with the slider
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
+                    HStack(spacing: 5) {
                         if let walkingDistance = walkingDistance {
                             VStack {
                                 VitalsRectangleCard(title: "Walking Distance", value: formatValue(walkingDistance, unit: "km"), symbol: "figure.walk", color: Color.teal.opacity(0.8)) {
@@ -796,6 +834,40 @@ struct HomePageView: View {
 
 }
 
+struct AffirmationButton: View {
+    @State private var showAffirmation = false
+    @State private var affirmationText: String = ""
+    
+    // Sample default affirmations
+    let defaultAffirmations = [
+        "You are capable of amazing things!",
+        "Today is a new opportunity to grow and learn.",
+        "You are worthy of love and happiness."
+    ]
+    
+    var body: some View {
+        Button(action: {
+            if affirmationText.isEmpty {
+                // Select a random default affirmation if user hasn't added one
+                affirmationText = defaultAffirmations.randomElement() ?? ""
+            }
+            showAffirmation.toggle()
+        }) {
+            Text(showAffirmation ? affirmationText : "Tap for your daily affirmations!")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(showAffirmation ? Color(red: 255/255, green: 204/255, blue: 204/255) : Color(red: 135/255, green: 206/255, blue: 235/255))
+                .cornerRadius(10)
+                .shadow(color: Color.white.opacity(0.9), radius: 5, x: -5, y: -5)
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
+        }
+        .padding(30)
+        .padding(.leading,-20)
+    }
+}
+
 struct MilestoneTrackerView: View {
     @State private var selectedWeight: Int = 40
     @State private var affirmationInput: String = ""
@@ -826,13 +898,13 @@ struct MilestoneTrackerView: View {
                 Button(action: addMilestone) {
                     Text("Add Milestone")
                         .foregroundColor(.white)
-                        .padding(.leading,0)
+                        .padding(.leading, 0)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
                         .background(Color.teal.opacity(0.8))
                         .cornerRadius(20)
                 }
-                .padding(.leading,80)
+                .padding(.leading, 80)
 
                 NavigationLink(destination: GraphView(data: milestoneEntries.map { entry in
                     GraphData(date: entry.date, weight: Double(entry.weight), affirmation: entry.affirmation)
@@ -848,6 +920,9 @@ struct MilestoneTrackerView: View {
                 }
 
             }
+            
+            
+            
         }
         .padding()
     }
@@ -870,6 +945,7 @@ struct MilestoneTrackerView: View {
         affirmationInput = ""
     }
 }
+
 
 struct MilestoneTrackerView_Previews: PreviewProvider {
     static var previews: some View {
