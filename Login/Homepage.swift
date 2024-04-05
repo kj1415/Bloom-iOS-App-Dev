@@ -365,7 +365,7 @@ struct HomePageView: View {
                     RoundedRectangle(cornerRadius: 1)
                         .foregroundColor(Color.white.opacity(0.4))
                         .overlay(
-                            Text("You are \(Int((currentWeek))) weeks Pregnant     ")
+                            Text("You are \(Int((currentWeek))) weeks Pregnant")
                                 .foregroundColor(.teal)
                                 .font(.subheadline)
                             
@@ -375,15 +375,16 @@ struct HomePageView: View {
                 }
                 
                 
-                Slider(value: $currentWeek, in: 1...40, step: 1)
-                    .frame(width:360,height: 20) // Adjust the height of the slider
-                    .padding(.horizontal)
-                    .disabled(true) // Prevent user interaction with the slider
+//                Slider(value: $currentWeek, in: 1...40, step: 1)
+//                    .frame(width:360,height: 20) // Adjust the height of the slider
+//                    .padding(.horizontal)
+//                    .disabled(true) // Prevent user interaction with the slider
+                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         if let walkingDistance = walkingDistance {
                             VStack {
-                                VitalsRectangleCard(title: "Walking Distance", value: formatValue(walkingDistance, unit: "km"), symbol: "figure.walk", color: Color.cyan) {
+                                VitalsRectangleCard(title: "Walking Distance", value: formatValue(walkingDistance, unit: "km"), symbol: "figure.walk", color: Color.teal.opacity(0.8)) {
                                     print("Walking Distance: \(walkingDistance)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -392,7 +393,7 @@ struct HomePageView: View {
                         }
                         if let heartRate = heartRate {
                             VStack {
-                                VitalsRectangleCard(title: "Heart Rate", value: formatValue(Double(heartRate), unit: "bpm"), symbol: "heart.fill", color: Color.cyan) {
+                                VitalsRectangleCard(title: "Heart Rate", value: formatValue(Double(heartRate), unit: "bpm"), symbol: "heart.fill", color: Color.teal.opacity(0.8)) {
                                     print("Heart Rate: \(heartRate)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -401,7 +402,7 @@ struct HomePageView: View {
                         }
                         if let stepsCount = stepsCount {
                             VStack {
-                                VitalsRectangleCard(title: "Steps", value: formatValue(Double(stepsCount)), symbol: "shoeprints.fill", color: Color.cyan) {
+                                VitalsRectangleCard(title: "Steps", value: formatValue(Double(stepsCount)), symbol: "shoeprints.fill", color: Color.teal.opacity(0.8)) {
                                     print("Steps: \(stepsCount)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -410,7 +411,7 @@ struct HomePageView: View {
                         }
                         if let hoursOfSleep = hoursOfSleep {
                             VStack {
-                                VitalsRectangleCard(title: "Sleep", value: formatValue(hoursOfSleep, unit: "hrs"), symbol: "moon.zzz.fill", color: Color.cyan) {
+                                VitalsRectangleCard(title: "Sleep", value: formatValue(hoursOfSleep, unit: "hrs"), symbol: "moon.zzz.fill", color: Color.teal.opacity(0.8)) {
                                     print("Sleep: \(hoursOfSleep)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
