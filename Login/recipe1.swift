@@ -330,6 +330,7 @@ struct ContentView1: View {
             .navigationTitle("Recipes for Pregnancy")
             .navigationBarTitleDisplayMode(.inline) // Set the navigation bar title display mode to inline
             .navigationBarHidden(false)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
@@ -348,7 +349,9 @@ struct MealListView: View {
                     NavigationLink(destination: MealView(meal: breakfast)) {
                         MealRowView(meal: breakfast)
                     }
+                    .navigationBarHidden(true)
                 }
+                    
             }
         //}
             
@@ -360,6 +363,7 @@ struct MealListView: View {
                             MealRowView(meal: lunch)
                         }
                     }
+                        
                 }
             //}
             

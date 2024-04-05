@@ -458,7 +458,17 @@ struct HomePageView: View {
                         }
                     }
                    .padding()
+                    
                 }
+                Text("Mom's Corner") // Text field with the title
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.top,-30)
+                    .padding()
+                    .frame(alignment: .leading)
+                LargeSquareButtonsScrollView()
+                .padding(.top,5)
 
                 VStack(spacing: 10) {
                     Text("Prenatal Nuggets:") // Text field with the title
@@ -467,7 +477,7 @@ struct HomePageView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
-                        .padding(.top,30)
+                        .padding(.top,-20)
                         .padding()
                         .frame(alignment: .leading)
                     InfoSection(title: "Baby 🍼", data: babyData(forWeek: Int(currentWeek)), color: Color(red: 1.0, green: 0.8, blue: 0.8)) // Dark teal
@@ -479,15 +489,15 @@ struct HomePageView: View {
                 
             }
             
-            Text("Recommendations") // Text field with the title
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-                .padding(.top,30)
-                .padding()
-                .frame(alignment: .leading)
-            LargeSquareButtonsScrollView()
-            .padding(.top,10)
+//            Text("Mom's Corner") // Text field with the title
+//                .font(.title2)
+//                .fontWeight(.bold)
+//                .foregroundColor(.black)
+//                .padding(.top,30)
+//                .padding()
+//                .frame(alignment: .leading)
+//            LargeSquareButtonsScrollView()
+//            .padding(.top,10)
 //            .onAppear {
 //                // Update current week
 //                let currentDate = Date()
@@ -498,6 +508,7 @@ struct HomePageView: View {
 //                updateBabyHeightAndWeight(for: Int(currentWeek))
 //            }
             MilestoneTrackerView()
+                .padding(.top,30)
         }
                     .onAppear {
                         // Update current week
@@ -947,11 +958,11 @@ struct MilestoneTrackerView: View {
 }
 
 
-struct MilestoneTrackerView_Previews: PreviewProvider {
-    static var previews: some View {
-        MilestoneTrackerView()
-    }
-}
+//struct MilestoneTrackerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MilestoneTrackerView()
+//    }
+//}
 
 struct GraphPlotView: View {
     let entry: GraphData
@@ -1032,12 +1043,12 @@ struct GraphData: Identifiable {
 }
 
 
-struct GraphView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Example data for preview
-        GraphView(data: [])
-    }
-}
+//struct GraphView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Example data for preview
+//        GraphView(data: [])
+//    }
+//}
 
 
 
@@ -1104,62 +1115,75 @@ struct InfoSection: View {
 struct LargeSquareButton<Destination: View>: View {
     var systemImageName: String
     var title: String
-    var color: Color
     var destinationScreen: Destination
+    let GradientPurple1 = Color(red: 185/255, green: 164/255, blue: 223/255)
+    let GradientPurple2 = Color(red: 209/255, green: 194/255, blue: 241/255)
 
     var body: some View {
         NavigationLink(destination: destinationScreen) {
             VStack {
-                Image(systemName: systemImageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
-                    .foregroundColor(color)
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color("PastelPink"), Color("PastelOrange")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .frame(width: 70, height: 70)
+                        .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+
+                    Image(systemName: systemImageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white)
+                }
+                .padding(.bottom, 8)
 
                 Text(title)
-                    .foregroundColor(color)
+                    .foregroundColor(.primary)
                     .fontWeight(.bold)
-                    .padding(.top, 8)
+                    .font(.subheadline)
+                    .font(.caption)
             }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(LinearGradient(gradient: Gradient(colors: [GradientPurple1, GradientPurple2]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                    .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+            )
         }
         .navigationBarBackButtonHidden(true)
         .buttonStyle(PlainButtonStyle())
     }
 }
 
-
-
-
-
 struct LargeSquareButtonsScrollView: View {
+    let GradientPurple1 = Color(red: 185/255, green: 164/255, blue: 223/255)
+    let GradientPurple2 = Color(red: 209/255, green: 194/255, blue: 241/255)
+
     var body: some View {
-        HStack(spacing: 20) { // Reduce the spacing between squares
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.teal.opacity(0.3))
+        HStack(spacing: 20) {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(LinearGradient(gradient: Gradient(colors: [GradientPurple1, GradientPurple2]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                 .overlay(
-                    LargeSquareButton(systemImageName: "fork.knife.circle", title: "Mom's recipes", color: .cyan, destinationScreen: ContentView1())
+                    LargeSquareButton(systemImageName: "fork.knife.circle", title: "Culinary Delights", destinationScreen: ContentView1())
                 )
-                .navigationBarBackButtonHidden(true)
-                .frame(width: 150, height: 150) // Adjust the size of the square
+                .frame(width: 150, height: 150)
             
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.teal.opacity(0.3))
+            RoundedRectangle(cornerRadius: 15)
+                .fill(LinearGradient(gradient: Gradient(colors: [GradientPurple1, GradientPurple2]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                 .overlay(
-                    LargeSquareButton(systemImageName: "figure.run", title: "Exercise", color: .cyan, destinationScreen: ExercisePage())
+                    LargeSquareButton(systemImageName: "figure.run", title: "Exercise Zone", destinationScreen: ExercisePage())
                 )
-                .navigationBarBackButtonHidden(true)
-                .frame(width: 150, height: 150) // Adjust the size of the square
-            
-//            RoundedRectangle(cornerRadius: 0)
-//                .foregroundColor(.cyan.opacity(0.8))
-//                .overlay(
-//                    LargeSquareButton(systemImageName: "cross.case", title: "Appointments", color: .cyan, destinationScreen: AppointmentBookingView())
-//                )
-//                .frame(width: 80, height: 80) // Adjust the size of the square
+                .frame(width: 150, height: 150)
         }
         .padding(.bottom, 40)
     }
 }
+
 
 
 extension Date {
