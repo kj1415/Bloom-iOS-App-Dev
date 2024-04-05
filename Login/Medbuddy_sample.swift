@@ -99,8 +99,9 @@ struct AddPlanView: View {
                     .padding()
                     
                     Button(action: {
-                        // Add medicine logic
-                        isSheetPresented = false // Close the sheet after adding medicine
+                        let medicationReminder = MedicationReminder(pillName: pillName, amount: amount, duration: duration, isBeforeFood: isBeforeFood, selectedTime: selectedTime)
+                        remindersManager.medicationReminders.append(medicationReminder)
+                        isSheetPresented = false
                     }) {
                         Text("Add Medicine")
                             .foregroundColor(.white)
@@ -118,6 +119,22 @@ struct AddPlanView: View {
             }
         }
     }
+}
+struct MedicationReminder: Identifiable {
+    let id = UUID()
+    let pillName: String
+    let amount: Int
+    let duration: Int
+    let isBeforeFood: Bool
+    let selectedTime: Date
+}
+struct MedicineCapsule: Identifiable {
+    let id = UUID()
+    let pillName: String
+    let amount: Int
+    let duration: Int
+    let isBeforeFood: Bool
+    let selectedTime: Date
 }
 struct AddPlanView_Previews: PreviewProvider {
     static var previews: some View {

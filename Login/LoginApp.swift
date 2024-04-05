@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
-
+import Firebase
 @main
 struct LoginApp: App {
+    init(){
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             onboarding()
         }
     }
 }
+
+
+
