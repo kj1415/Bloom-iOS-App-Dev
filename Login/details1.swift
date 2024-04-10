@@ -15,14 +15,19 @@ struct Details1: View {
 
     var body: some View {
         ZStack{
-            Color(.systemTeal).brightness(0.70).ignoresSafeArea()
-
-            VStack {
-                Image("logo1")
+            //Color(.systemTeal).brightness(0.70).ignoresSafeArea()
+            Image("img11")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .padding()
+                    .aspectRatio(contentMode: .fill)
+                    .opacity(0.05)
+                    .edgesIgnoringSafeArea(.all)
+            VStack {
+//                Image("logo1")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 100, height: 100)
+//                    .padding()
+                Spacer()
 
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(Color.red.opacity(0.3))
@@ -58,9 +63,10 @@ struct Details1: View {
 //                    .keyboardType(.numberPad) // Allow only numerical input
 //                    .textFieldStyle(RoundedBorderTextFieldStyle())
 //                    .padding()
-                Text("Please enter the date of your last menstrual cycle to help us personalise the app for you")
+                Text("Please enter the date of your last menstrual cycle to help us personalise the app for you!")
                     .font(.subheadline)
-                    .frame(alignment: .center)
+                    .frame(width:380, alignment: .center)
+                    
                 
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(Color.teal.opacity(0.4))

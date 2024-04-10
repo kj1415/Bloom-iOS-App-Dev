@@ -154,8 +154,8 @@ struct VitalsRectangleCard: View {
         }) {
             VStack {
                 if showValue {
-                    Text(value)
-                        .font(.title)
+                    Text("Keep It Up!")
+                        .font(.title2)
                         .padding(.top, 20)
                         .foregroundColor(.white)
                 } else {
@@ -167,7 +167,7 @@ struct VitalsRectangleCard: View {
                             .foregroundColor(.white)
                             .padding(.bottom, 10)
                         
-                        Text(title)
+                        Text(value)
                             .font(.headline)
                             .foregroundColor(.white)
                     }
@@ -422,7 +422,7 @@ struct HomePageView: View {
                     HStack(spacing: 5) {
                         if let walkingDistance = walkingDistance {
                             VStack {
-                                VitalsRectangleCard(title: "Walking Distance", value: formatValue(walkingDistance, unit: "km"), symbol: "figure.walk", color: Color.teal.opacity(0.8)) {
+                                VitalsRectangleCard(title: "Walking Distance", value: formatValue(walkingDistance, unit: "km"), symbol: "figure.walk", color: Color(red: 130/255, green: 160/255, blue: 216/255)) {
                                     print("Walking Distance: \(walkingDistance)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -431,7 +431,7 @@ struct HomePageView: View {
                         }
                         if let heartRate = heartRate {
                             VStack {
-                                VitalsRectangleCard(title: "Heart Rate", value: formatValue(Double(heartRate), unit: "bpm"), symbol: "heart.fill", color: Color.teal.opacity(0.8)) {
+                                VitalsRectangleCard(title: "Heart Rate", value: formatValue(Double(heartRate), unit: "bpm"), symbol: "heart.fill", color: Color(red: 130/255, green: 160/255, blue: 216/255)) {
                                     print("Heart Rate: \(heartRate)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -440,7 +440,7 @@ struct HomePageView: View {
                         }
                         if let stepsCount = stepsCount {
                             VStack {
-                                VitalsRectangleCard(title: "Steps", value: formatValue(Double(stepsCount)), symbol: "shoeprints.fill", color: Color.teal.opacity(0.8)) {
+                                VitalsRectangleCard(title: "Steps", value: formatValue(Double(stepsCount)), symbol: "shoeprints.fill", color: Color(red: 130/255, green: 160/255, blue: 216/255)) {
                                     print("Steps: \(stepsCount)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -449,7 +449,7 @@ struct HomePageView: View {
                         }
                         if let hoursOfSleep = hoursOfSleep {
                             VStack {
-                                VitalsRectangleCard(title: "Sleep", value: formatValue(hoursOfSleep, unit: "hrs"), symbol: "moon.zzz.fill", color: Color.teal.opacity(0.8)) {
+                                VitalsRectangleCard(title: "Sleep", value: formatValue(hoursOfSleep, unit: "hrs"), symbol: "moon.zzz.fill", color: Color(red: 130/255, green: 160/255, blue: 216/255)) {
                                     print("Sleep: \(hoursOfSleep)")
                                 }
                                .frame(width: 150, height: 150) // Adjust size of the card
@@ -471,7 +471,7 @@ struct HomePageView: View {
                 .padding(.top,5)
 
                 VStack(spacing: 10) {
-                    Text("Prenatal Nuggets:") // Text field with the title
+                    Text("Prenatal Nuggets") // Text field with the title
                     //.font(.title3)
                     //.font(.custom("SF Pro", size: 22))
                         .font(.title2)
@@ -869,7 +869,7 @@ struct AffirmationButton: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(showAffirmation ? Color(red: 255/255, green: 204/255, blue: 204/255) : Color(red: 135/255, green: 206/255, blue: 235/255))
+                .background(showAffirmation ? Color(red: 255/255, green: 204/255, blue: 204/255) : Color(red: 135/255, green: 206/255, blue: 250/255))
                 .cornerRadius(10)
                 .shadow(color: Color.white.opacity(0.9), radius: 5, x: -5, y: -5)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
@@ -1116,8 +1116,8 @@ struct LargeSquareButton<Destination: View>: View {
     var systemImageName: String
     var title: String
     var destinationScreen: Destination
-    let GradientPurple1 = Color(red: 185/255, green: 164/255, blue: 223/255)
-    let GradientPurple2 = Color(red: 209/255, green: 194/255, blue: 241/255)
+    let GradientPurple1 = Color(red: 130/255, green: 160/255, blue: 216/255)
+    let GradientPurple2 = Color(red: 237/255, green: 183/255, blue: 237/255)
 
     var body: some View {
         NavigationLink(destination: destinationScreen) {
@@ -1157,8 +1157,8 @@ struct LargeSquareButton<Destination: View>: View {
 }
 
 struct LargeSquareButtonsScrollView: View {
-    let GradientPurple1 = Color(red: 185/255, green: 164/255, blue: 223/255)
-    let GradientPurple2 = Color(red: 209/255, green: 194/255, blue: 241/255)
+    let GradientPurple1 = Color(red: 130/255, green: 160/255, blue: 216/255)
+    let GradientPurple2 = Color(red: 237/255, green: 183/255, blue: 237/255)
 
     var body: some View {
         HStack(spacing: 20) {
@@ -1169,7 +1169,7 @@ struct LargeSquareButtonsScrollView: View {
                 .overlay(
                     LargeSquareButton(systemImageName: "fork.knife.circle", title: "Culinary Delights", destinationScreen: ContentView1())
                 )
-                .frame(width: 150, height: 150)
+                .frame(width: 160, height: 150)
             
             RoundedRectangle(cornerRadius: 15)
                 .fill(LinearGradient(gradient: Gradient(colors: [GradientPurple1, GradientPurple2]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -1178,7 +1178,7 @@ struct LargeSquareButtonsScrollView: View {
                 .overlay(
                     LargeSquareButton(systemImageName: "figure.run", title: "Exercise Zone", destinationScreen: ExercisePage())
                 )
-                .frame(width: 150, height: 150)
+                .frame(width: 160, height: 150)
         }
         .padding(.bottom, 40)
     }
